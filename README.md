@@ -2,7 +2,6 @@
 ### 1. 기본 개발환경 Setting
 - 실행법
 
-git clone 
->git clone https://github.com/PresentJay/EasyPresentationTool.git
->cd EasyPresentationTool
->. venv/bin/activate
+git clone https://github.com/PresentJay/EasyPresentationTool.git
+cd EasyPresentationTool
+. venv/bin/activate
