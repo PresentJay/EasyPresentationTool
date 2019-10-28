@@ -3,5 +3,11 @@
 - 실행법
 
 git clone https://github.com/PresentJay/EasyPresentationTool.git
+
 cd EasyPresentationTool
+
 . venv/bin/activate
+
+pip install flask
+
+python main.py
