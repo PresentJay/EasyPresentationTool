@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<link href="{{ url_for('static', filename='css/result_style.css') }}"rel="stylesheet" type="text/css">
+   <meta charset="UTF-8">
+   <link href="{{ url_for('static', filename='css/result_style.css') }}" rel="stylesheet" type="text/css">
 </head>
+
 <body>
-	{% for key,value in result.items() %}
-	<select name = "keyword" style='display:inline;float:left; font-size: 15px; font-weight : bold; border : 1px solid red; margin-bottom: 10px;height:41px;margin-right : 50px;'>
-		<option value="none" style = 'font-size: 15px; font-weight : bold;'>===select===</option>
-	</select>
-		<div id="app" class="object">{{ key }} : 
-			{% for object in value %}
-			<div class="word">{{ object }}</div>
-			{% endfor %}
-		</div>	
-	{% endfor %}
-	<script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
+   {% for key,value in result.items() %}
+   <div style="width:100%">
+      <select name="keyword"
+         style='display:inline;float:left; font-size: 15px; font-weight : bold; border : 1px solid red; margin-bottom: 10px;height:41px;margin-right : 50px;'>
+         <option value="none" style='font-size: 15px; font-weight : bold;'>===select===</option>
+      </select>
+      <div id="app" class="object">{{ key }} :
+         {% for object in value %}
+         <div class="word">{{ object }}</div>
+         {% endfor %}
+      </div>
+      <div style="display: block; clear:both;">
+      </div>
+   </div>
+   {% endfor %}
+   <script src="https://unpkg.com/vue/dist/vue.js"></script>
+   <script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
 </body>
+
 </html>
