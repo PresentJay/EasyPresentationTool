@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, url_for, jsonify
 from konlpy.tag import Kkma
 import ko
 
-host_addr = "0.0.0.0"
-port_num = "5002"
+host_addr = "203.241.228.111"
+port_num = "5050"
 
 kkma = ko.Ko()
 kkma.Process_KOR('아버지가 방에 들어가셨다')
