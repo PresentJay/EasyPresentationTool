@@ -8,18 +8,18 @@
 <body>
 	{% for key,value in result.items() %}
 		<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">{{ key }} : 
-			<div id="wordContainer">
+			<div id="wordContainer" class="wordContainer">
 			{% for object in value %}
 			<div class="word" id='word-{{ loop.index }}'>{{ object }}</div>
 			{% endfor %}
 			</div>
-			<div class="addWordButton" id="addWord" onclick="addWord(event)">+</div>
+			<div class="addWordButton" id="addWord" onmousedown="addWord(event)">+</div>
 		</div>
 	{% endfor %}
-	<ul id="contextMenu" class="dropdown-menu" role="menu">
-			<li><textara id='word'></li>
-			<li><div class='context-button' id='context-button'>추가하기</div></li>
-		</ul>
+	<div id="contextMenu" class="dropdown-menu" role="menu">
+			<div><textarea id='textarea-word' type='text' cols="20"></textarea></div>
+			<div><div class='context-button' onclick="ContextButtonClicked(event)">추가하기</div><div class='context-button' onclick="ContextCancelButtonClicked(event)">취소</div>
+			</div>
 	<script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -30,6 +30,22 @@
     font-weight: bold;
 }
 .context-button{
+    display: inline-block;
     font-size:20px;
-    
+    background : skyblue;
+    border: 1px solid blue;
+    padding-top:5px;
+    padding-bottom: 5px;
+    padding-left:10px;
+    padding-right:10px;
+    margin-right:10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.wordContainer{
+    display: inline-block;
+}
+.dropdown-menu{
+    width:200px;
+    height:100px;
 }
