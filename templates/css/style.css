@@ -1,0 +1,15 @@
+.select {
+    display: inline;
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    border: 1px solid red;
+    margin-bottom: 10px;
+    height: 41px;
+    margin-right: 50px;
+ }
+
+ .options {
+    font-size: 15px;
+    font-weight: bold;
+ }
