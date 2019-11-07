@@ -32,9 +32,10 @@ function ContextButtonClicked(e){
   childElement.style.marginRight = "10px";
   childElement.innerHTML = name;
   childElement.id = "word-"+selectedTarget.children.length;
-  childElement.addEventListener('ondragstart',drag(event));
-  childElement.addEventListener('ondrop',drop(event));
-  childElement.addEventListener('ondragover',allowDrop(event));
+  childElement.draggable = "true";
+  childElement.addEventListener('dragstart',drag,false);
+  childElement.addEventListener('drop',drop,false);
+  childElement.addEventListener('dragover',allowDrop,false);
   selectedTarget.appendChild(childElement);
   document.getElementById('contextMenu').style.display = 'none';
 }
@@ -51,7 +52,7 @@ function drag(ev){
 }
 function drop(ev){
   ev.preventDefault();
-  document.getElementBy(ev.target.id).innerText += " " + document.getElementById(ev.dataTransfer.getData("Text")).innerText;
-  document.getElementById("container").removeChild(document.getElementById(ev.target.id));
+  document.getElementById(ev.target.id).innerText += " " + document.getElementById(ev.dataTransfer.getData("Text")).innerText;
+  document.getElementById("wordContainer").removeChild(document.getElementById(ev.target.id));
   console.log(ev.dataTransfer.getData("Text") + " is dragged and dropped to " + ev.target.id );
 }
