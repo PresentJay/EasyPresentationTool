@@ -30,8 +30,13 @@ function ContextButtonClicked(e){
   childElement.style.paddingLeft = "10px";
   childElement.style.paddingRight = "10px";
   childElement.style.marginRight = "10px";
+<<<<<<< HEAD
   childElement.innerHTML = name;
   childElement.id = "word-"+selectedTarget.children.length;
+=======
+  childElement.innerText = name;
+  childElement.id = "word-"+ (Number(selectedTarget.children.length)+1);
+>>>>>>> 6b87014b1e88642a220b431703c8033d3612f24d
   childElement.draggable = "true";
   childElement.addEventListener('dragstart',drag,false);
   childElement.addEventListener('drop',drop,false);
@@ -53,6 +58,17 @@ function drag(ev){
 function drop(ev){
   ev.preventDefault();
   document.getElementById(ev.target.id).innerText += " " + document.getElementById(ev.dataTransfer.getData("Text")).innerText;
+<<<<<<< HEAD
   document.getElementById("wordContainer").removeChild(document.getElementById(ev.target.id));
   console.log(ev.dataTransfer.getData("Text") + " is dragged and dropped to " + ev.target.id );
+=======
+  document.getElementById("wordContainer").removeChild(document.getElementById(ev.dataTransfer.getData("Text")));
+  console.log(ev.dataTransfer.getData("Text") + " is dragged and dropped to " + ev.target.id );
+  ReIndexing(document.getElementById('wordContainer'));
+}
+function ReIndexing(container){
+  for(var i=0,item;item=container.children[i];i++){
+    item.id = "word-"+(i+1);
+  }
+>>>>>>> 6b87014b1e88642a220b431703c8033d3612f24d
 }
