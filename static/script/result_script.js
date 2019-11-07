@@ -26,4 +26,4 @@ var app = new Vue({
             window.addEventListener('mouseup',this.stopDrag);
         }
     }
-});
+);
