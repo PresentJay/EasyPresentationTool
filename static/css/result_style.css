@@ -1,5 +1,6 @@
 .word{
     font-size:20px;
+    font-weight: bold;
     display:inline-block;
     background : white;
     border: 1px solid red;
@@ -10,26 +11,16 @@
     margin-right:10px;
 }
 .object{
-    font-size: 15px;
-    font-weight : bold;
     background:coral;
     border : 1px solid red;
     margin-bottom: 10px;
 }
-.addWordButton{
-    font-size:20px;
-    display:none;
-    background : skyblue;
-    border: 1px solid blue;
-    padding-top:5px;
-    padding-bottom: 5px;
-    padding-left:10px;
-    padding-right:10px;
-    margin-right:10px;
-    cursor: pointer;
-    font-weight: bold;
+.wordContainer{
+    display: inline-block;
 }
-.context-button{
-    font-size:20px;
-    
+#contextMenu, #addWord{
+    display:none;
+}
+#contextMenu-input{
+    padding-bottom: 10px;
 }
