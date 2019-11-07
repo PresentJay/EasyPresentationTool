@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, url_for, jsonify
 from konlpy.tag import Kkma
 import ko
 
-host_addr = "203.241.228.111"
+#host_addr = "203.241.228.111"
+host_addr = "0.0.0.0"
 port_num = "5050"
 
 kkma = ko.Ko()

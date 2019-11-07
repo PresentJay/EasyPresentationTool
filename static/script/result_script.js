@@ -2,12 +2,10 @@ var selectedTarget;
 
 function MouseOver(e){
   selectedTarget = e.currentTarget.children[0];
-  document.getElementById('addWord').style.display = 'inline-block';
-  console.info('addWord style : '+document.getElementById('addWord').style.display);
+  e.currentTarget.children[1].style.display = 'inline-block';
 }
 function MouseLeave(e){
-  document.getElementById('addWord').style.display = 'none';
-  console.info('addWord style : '+document.getElementById('addWord').style.display);
+  e.currentTarget.children[1].style.display = 'none';
 }
 function addWord(e){
   var menu=document.getElementById('contextMenu');
@@ -20,8 +18,10 @@ function addWord(e){
 }
 function ContextButtonClicked(e){
   var name = document.getElementById('textarea-word').value;
+  document.getElementById('textarea-word').value="";
   var childElement = document.createElement('div');
-  childElement.style.fontSize = "20-large";
+  childElement.style.fontSize = "20px";
+  childElement.style.fontWeight ="bold";
   childElement.style.display ='inline-block';
   childElement.style.background = '#FFFFFF';
   childElement.style.border= "1px solid #FF0000";
