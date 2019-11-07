@@ -14,6 +14,7 @@ app = Flask(__name__,static_url_path='/static')
 @app.route("/")
 def hello():
     return render_template("input.html")
+    
 
 @app.route("/result",methods=['POST','GET'])
 def result():
