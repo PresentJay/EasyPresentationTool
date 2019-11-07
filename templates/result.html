@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,4 +28,76 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<<<<<<< HEAD
+   <meta charset="UTF-8">
+   <link href="{{ url_for('static', filename='css/result_style.css') }}" rel="stylesheet" type="text/css">
+   <link href="css/style.css" rel="stylesheet" type="text/css">
+=======
+	<meta charset="utf-8">
+	<link href="{{ url_for('static', filename='css/result_style.css') }}"rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+>>>>>>> 969b9b615795f17487df53a444e479f0756c7dcd
+</head>
+<body>
+<<<<<<< HEAD
+   {% for key,value in result.items() %}
+   <div style="width:100%">
+      <select class="select" name="keyword">
+         <option class="options" value="none">===select===</option>
+      </select>
+      <div id="app" class="object">{{ key }} :
+         {% for object in value %}
+         <div class="word" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">{{ object }}</div>
+         {% endfor %}
+      </div>
+      <div style="display: block; clear:both;">
+      </div>
+   </div>
+   {% endfor %}
+
+   <!-- javascript section -->
+   <script>
+         function allowDrop(ev){
+             console.log("Target is " + ev.target.id);
+             ev.preventDefault();
+         }
+         function drag(ev){
+             ev.dataTransfer.setData("Text", ev.target.id);
+             console.log(ev.target.id + " start." );
+         }
+         function drop(ev){
+             ev.preventDefault();
+             document.getElementBy(ev.target.id).innerText += " " + document.getElementById(ev.dataTransfer.getData("Text")).innerText;
+             document.getElementById("container").removeChild(document.getElementById(ev.target.id));
+             console.log(ev.dataTransfer.getData("Text") + " is dragged and dropped to " + ev.target.id );
+         }
+     </script>
+=======
+	{% for key,value in result.items() %}
+		<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">{{ key }} : 
+			<div id="wordContainer" class="wordContainer">
+			{% for object in value %}
+			<div class="word" id='word-{{ loop.index }}'>{{ object }}</div>
+			{% endfor %}
+			</div>
+			<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
+		</div>
+	{% endfor %}
+	<div id="contextMenu" class="container" role="menu">
+		<div class="input_group">
+			<div class="input-group flex-nowrap" id="contextMenu-input"><input class="" id='textarea-word' placeholder="객체명" aria-label="객체명"aria-describedby="addon-wrapping" type='text'></input></div>
+			<div><div class='btn btn-primary' onclick="ContextButtonClicked(event)">추가하기</div><div class='btn btn-secondary' onclick="ContextCancelButtonClicked(event)">취소</div>
+			</div>
+		</div>
+	<script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+>>>>>>> 969b9b615795f17487df53a444e479f0756c7dcd
+</body>
+>>>>>>> 9cc29a81f3da92f95f1243f42c94f7ba4ead00fa
 </html>
