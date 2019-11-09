@@ -14,5 +14,4 @@ $(document).click(function (e) {
             console.log(e.target.tagName + " : " + e.target.id + " : " + e.target.className + " is clicked : " + e.target.length);
             break;
     }
-
 });

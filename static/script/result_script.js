@@ -1,5 +1,15 @@
+/**
+ * @global 임시적으로 사용가능한 Target을 나타냄
+ */
 var selectedTarget;
+
+/**
+ * @global clickWord를 통해 선택된 word를 나타냄
+ */
 var selectedWord;
+/**
+ * @global Mouseover 이벤트가 진행중인 Container(슬라이드 섹션)를 나타냄
+ */
 var selectedContainer;
 
 
@@ -160,7 +170,7 @@ function ContainerMouseLeave(e) {
  * @lastUpdate 19-11-09 / 20:25
  * @lastAuthor 정현재
  * @param {*} e 'event' object
- * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
+ * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정 + id와 class가 겹치는 현상으로, id 제거
  */
 function AddSentence(e) {
   clearContextMenu();
@@ -170,7 +180,6 @@ function AddSentence(e) {
   Sentence.addEventListener('mouseout', ContainerMouseLeave, false);
 
   var app = document.createElement('div');
-  app.id = "app";
   app.className = "object";
   app.addEventListener('mouseover', MouseOver, false);
   app.addEventListener('mouseout', MouseLeave, false);
@@ -215,6 +224,12 @@ function AddSentence(e) {
   ReIndexingContainter(slideContainer.children);
 }
 
+/**
+ * @lastUpdate
+ * @lastAuthor 임순길
+ * @param {*} e 'event' object
+ * @explain
+ */
 function DeleteSentence(e) {
   clearContextMenu();
   var slideContainer = document.getElementById('slideContainer');
