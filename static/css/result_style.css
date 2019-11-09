@@ -20,7 +20,7 @@
 }
 
 .object{
-    background:#1b9b90;
+    background: #042f5a;
     padding: 20px;
     margin-top: 20px;
     margin-bottom: 4px;
@@ -28,15 +28,24 @@
     color: white;
     font-size: 24px;
     border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.3),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025); 
 }
 .wordContainer{
     display: inline-block;
     border: black;
     padding: 10px;
 }
-#contextMenu, #addWord{
+
+#contextMenu{
     display:none;
 }
+/* 
+#addword{
+    visibility: hidden;
+} */
+
 #contextMenu-input{
     padding-bottom: 10px;
 }
@@ -48,6 +57,10 @@
     padding : 15px;
     width: auto;
     position: absolute;
+    border-radius: 10px;
+    z-index: 1;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.3),
+        0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025); 
 }
 
 div.container
@@ -111,16 +124,27 @@ div.circleBehind .word:hover:after
     transform: translateX(-50%) translateY(-50%) scale(1.3);
 }
 
+.wordarea{
+    background-color: white !important;
+    opacity: 0.85;
+    width: 200px !important;
+    margin-bottom: 5px !important;
+}
+
+.wordarea::placeholder {
+    color:black !important;
+}
+
+#textarea-word::placeholder {
+    color:black !important;
+}
+ 
 /*
  * @lastUpdate 19-11-09 / 18:52
  * @lastAuthor 박현채
  * @param header
  * @explain nav
  */
-
-#textarea-word::placeholder {
-    color:black !important;
-}
 
 .resultLogo {
     font-size: 15px;

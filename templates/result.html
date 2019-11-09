@@ -17,88 +17,94 @@
 		<header id="header" class="resultAlt">
 			<h1 class="resultLogo"><a style="text-decoration: none; color:inherit" href="/">EPT</a></h1>
 			<div class="spanCenter">
-				<span class="resultLogoSpan">대본편집기에 대한 사용방법을 숙지하고 편집하세요!<a class="resultLogoA" href='#'>  [사용법 바로가기]</a></span>
+				<span class="resultLogoSpan">대본편집기에 대한 사용방법을 숙지하고 편집하세요!<a class="resultLogoA" href='#'> [사용법
+						바로가기]</a></span>
 			</div>
 			<nav id="nav">
 				<ul>
-				<li class="special">
-					<a style="text-decoration: none;" href="#menu" class="menuToggle"><span>Menu</span></a> 
-					<div id="menu">
-						<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="#">Generic</a></li>
-						<li><a href="#">Elements</a></li>
-						<li><a href="#">Sign Up</a></li>
-						<li><a href="#">Log In</a></li>
-						</ul>
-					</div>
-				</li>
+					<li class="special">
+						<a style="text-decoration: none;" href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li><a href="#">Generic</a></li>
+								<li><a href="#">Elements</a></li>
+								<li><a href="#">Sign Up</a></li>
+								<li><a href="#">Log In</a></li>
+							</ul>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</header>
 
-		<div id="slideContainer">
-			{% for key,value in result.items() %}
-			<!-- <div class="container topBotomBordersIn"> -->
-			<div id="sentenceContainer-{{ loop.index }}" class="container circleBehind"
-				onmouseover="ContainerMouseOver(event)" onmouseout="ContainerMouseLeave(event)">
-				<!-- <select class="select" name="keyword">
+			<div id="slideContainer">
+				{% for key,value in result.items() %}
+				<!-- <div class="container topBotomBordersIn"> -->
+				<div id="sentenceContainer-{{ loop.index }}" class="container circleBehind"
+					onmouseover="ContainerMouseOver(event)" onmouseout="ContainerMouseLeave(event)">
+					<!-- <select class="select" name="keyword">
 			<option class="options" value="none">===select===</option>
 			</select> -->
-				<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">
-					<span class="keyNumber">{{ key }} :</span>
-					<div id="wordContainer" class="wordContainer">
-						{% for object in value %}
-						<div class="word" id='word-{{ loop.index }}' draggable="true" ondragstart="drag(event)"
-							ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clickWord(event)">{{ object }}
+					<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">
+						<div id="wordContainer" class="wordContainer">
+							<span class="keyNumber">{{ key }} :</span>
+							{% for object in value %}
+							<div class="word" id='word-{{ loop.index }}' draggable="true" ondragstart="drag(event)"
+								ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clickWord(event)">
+								{{ object }}
+							</div>
+							{% endfor %}
 						</div>
-						{% endfor %}
+						<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
 					</div>
-					<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
+					<div id="SentenceAddButton" , class="btn btn-success" style="display:none"
+						onclick="AddSentence(event)">
+						문장 추가</div>
+					<div id="SentenceDeleteButton" , class="btn btn-danger" style="display:none"
+						onclick="DeleteSentence(event)">문장 삭제</div>
 				</div>
-				<div id="SentenceAddButton" , class="btn btn-success" style="display:none" onclick="AddSentence(event)">
-					문장 추가</div>
-				<div id="SentenceDeleteButton" , class="btn btn-danger" style="display:none"
-					onclick="DeleteSentence(event)">문장 삭제</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
-		</div>
-		<div style="display: block; clear:both;">
-		</div>
-		<div class="contextMenu" id="contextMenu" role="menu">
-			<div class="input_group">
-				<div class="input-group flex-nowrap" id="contextMenu-input">
-					<input type="text" class="wordarea" id='textarea-word' placeholder="추가할 말" required />
+			<div style="display: block; clear:both;">
+			</div>
+			<div class="contextMenu" id="contextMenu" role="menu">
+				<div class="input_group">
+					<div class="input-group flex-nowrap" id="contextMenu-input">
+						<input type="text" class="wordarea" id='textarea-word' placeholder="추가할 말" required />
+					</div>
+					<div>
+						<div class='btn btn-primary' type="submit" onclick="ContextButtonClicked(event)">추가하기</div>
+						<div class='btn btn-secondary' onclick="ContextCancelButtonClicked(event)">취소</div>
+					</div>
 				</div>
+			</div>
+			<div class="contextMenu" id="selection" role="menu" style="display: none;">
+				<input type="text" class="wordarea" id="modified-Text" placeholder="수정할 말" required
+					style="display: none;" />
 				<div>
-					<div class='btn btn-primary' type="submit" onclick="ContextButtonClicked(event)">추가하기</div>
-					<div class='btn btn-secondary' onclick="ContextCancelButtonClicked(event)">취소</div>
+					<div id="word-Modify-Button" class='btn btn-success' onclick="modifyConfirmButtonClicked(event)"
+						style="display: none;">확인</div>
+					<div id="word-Modify-startButton" class='btn btn-light' onclick="modifyButtonClicked(event)">수정
+					</div>
+					<div id="word-Delete-confirmButton" class="btn btn-danger" onclick="WordDeleteButtonClicked(event)">
+						삭제
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="contextMenu" id="selection" role="menu" style="display: none;">
-			<input type="text" class="wordarea" id="modified-Text" placeholder="수정할 말" required
-				style="display: none;" />
-			<div>
-				<div id="word-Modify-Button" class='btn btn-success' onclick="modifyConfirmButtonClicked(event)"
-					style="display: none;">확인</div>
-				<div id="word-Modify-startButton" class='btn btn-light' onclick="modifyButtonClicked(event)">수정</div>
-				<div id="word-Delete-confirmButton" class="btn btn-danger" onclick="WordDeleteButtonClicked(event)">삭제
-				</div>
-			</div>
-		</div>
 
-		<!--CreateButton
+			<!--CreateButton
 
 		@lastUpdate 19-11-09 / 19:20
 		@lastAuthor 박현채
 		@param footer -CreateButton
 		@explain -CreateButton-->
 
-		<div class="scriptEditBtnDiv">
-			<form action="#" method="POST">
-				<button id="scriptEditBtn" type="submit">다음단계로 가기</button>
-			</form>
+			<div class="scriptEditBtnDiv">
+				<form action="#" method="POST">
+					<button id="scriptEditBtn" type="submit">다음단계로 가기</button>
+				</form>
+			</div>
 		</div>
 
 		<!---->
@@ -124,6 +130,5 @@
 		<script src="static/assets/js/util.js"></script>
 		<script src="static/assets/js/main.js"></script>
 </body>
-</div>
 
 </html>

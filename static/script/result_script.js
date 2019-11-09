@@ -2,14 +2,28 @@ var selectedTarget;
 var selectedWord;
 var selectedContainer;
 
+
+/**
+ * @lastUpdate 19-11-10 / 00:11
+ * @lastAuthor 정현재
+ * @param {*} e 'event' object
+ * @explain 
+ */
 function MouseOver(e) {
   selectedTarget = e.currentTarget.children[1];
-  e.currentTarget.children[2].style.display = 'inline-block';
+  selectedTarget.style.display = 'inline-block';
 }
 
+/**
+ * @lastUpdate 19-11-10 / 00:11
+ * @lastAuthor 정현재
+ * @param {*} e 'event' object
+ * @explain 
+ */
 function MouseLeave(e) {
-  e.currentTarget.children[2].style.display = 'none';
+    e.currentTarget.children[1].style.display = 'none';
 }
+
 
 /**
  * @lastUpdate 19-11-09 / 16:45
@@ -21,15 +35,15 @@ function MouseLeave(e) {
 function addWord(e) {
   var sel = document.getElementById('contextMenu');
   clearContextMenu();
-  if (sel.style.display == 'block') sel.style.display = 'none'; 
+  if (sel.style.display == 'block') sel.style.display = 'none';
   else {
     sel.style.display = 'block';
     var tgRect = e.target.getBoundingClientRect();
-    sel.style.left = (tgRect.left) + 'px';
-    sel.style.top = (tgRect.bottom) + 'px';
+    sel.style.left = (tgRect.left + pageXOffset) + 'px';
+    sel.style.top = (tgRect.bottom + pageYOffset) + 'px';
+
   }
 }
-
 
 /**
  * @lastUpdate 19-11-08 / 20:45
@@ -38,14 +52,18 @@ function addWord(e) {
  * @explain Word 클릭 시 선택한 Element 하단으로 수정/삭제 컨텍스트메뉴(selection) 노출/제거
  */
 function clickWord(e) {
+  clearContextMenu();
   var sel = document.getElementById('selection');
   selectedWord = e.target;
+  console.log(selectedWord + " modified.");
   if (sel.style.display == 'block') sel.style.display = 'none';
   else {
     sel.style.display = 'block';
     var tgRect = selectedWord.getBoundingClientRect();
-    sel.style.left = (tgRect.left) + 'px';
-    sel.style.top = (tgRect.bottom) + 'px';
+    sel.style.left = (tgRect.left + pageXOffset) + 'px';
+    sel.style.top = (tgRect.bottom + pageYOffset) + 'px';
+
+    console.log(tgRect.left + " , " + tgRect.bottom);
   }
 }
 
@@ -68,7 +86,7 @@ function ContextButtonClicked(e) {
     childElement.addEventListener('drop', drop, false);
     childElement.addEventListener('dragover', allowDrop, false);
     childElement.addEventListener('click', clickWord, false);
-    selectedTarget.appendChild(childElement);
+    selectedTarget.parentNode.children[0].appendChild(childElement);
   }
   document.getElementById('textarea-word').value = "";
   document.getElementById('contextMenu').style.display = 'none';
@@ -79,48 +97,74 @@ function ContextCancelButtonClicked(e) {
 }
 
 function allowDrop(ev) {
-  console.log("Target is " + ev.target);
+  // console.log("Target is " + ev.target);
   ev.preventDefault();
 }
 
 function drag(ev) {
   selectedWord = ev.target;
-  console.log(ev.target + " start.");
+  // console.log(ev.target + " start.");
 }
 
 function drop(ev) {
   ev.preventDefault();
   if (ev.target != selectedWord) {
     ev.target.innerText += " " + selectedWord.innerText;
-    selectedTarget.removeChild(selectedWord);
+    selectedTarget.parentNode.children[0].removeChild(selectedWord);
     ReIndexing(selectedTarget);
   }
 }
 
+/**
+ * @lastUpdate 19-11-09 / 20:37
+ * @lastAuthor 정현재
+ * @param {*} container
+ * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children관련 동작 변경
+ *          children이 기본적으로 1개이기 때문에, 2개 이상일 때부터 인덱싱이 작동하도록 추가
+ */
 function ReIndexing(container) {
-  for (var i = 0, item; item = container.children[i]; i++) {
-    item.id = "word-" + (i + 1);
+  if (container.children.length > 1) {
+    for (var i = 1, item; item = container.children[i]; i++) {
+      item.id = "word-" + (i + 1);
+    }
   }
 }
 
+/**
+ * @lastUpdate 19-11-09 / 20:22 
+ * @lastAuthor 정현재
+ * @param {*} e 'event' object
+ * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
+ */
 function WordDeleteButtonClicked(e) {
-  selectedTarget.removeChild(selectedWord);
+  selectedTarget.parentNode.children[0].removeChild(selectedWord);
   ReIndexing(selectedTarget);
   document.getElementById('selection').style.display = 'none';
+  clearContextMenu();
 }
 
+/**
+ * @lastUpdate 
+ * @lastAuthor 임순길
+ * @param {*} e 'event' object
+ * @explain 
+ */
 function ContainerMouseOver(e) {
   selectedContainer = e.currentTarget;
-  console.log(selectedContainer.id);
   selectedContainer.children[1].style.display = "inline-block";
   selectedContainer.children[2].style.display = "inline-block";
 }
-
 function ContainerMouseLeave(e) {
   selectedContainer.children[1].style.display = "none";
   selectedContainer.children[2].style.display = "none";
 }
 
+/**
+ * @lastUpdate 19-11-09 / 20:25
+ * @lastAuthor 정현재
+ * @param {*} e 'event' object
+ * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
+ */
 function AddSentence(e) {
   clearContextMenu();
   var Sentence = document.createElement('div');
@@ -135,14 +179,13 @@ function AddSentence(e) {
   app.addEventListener('mouseout', MouseLeave, false);
   Sentence.appendChild(app);
 
-  var spantag = document.createElement('span');
-  app.appendChild(spantag);
-
   var wordContainer = document.createElement('div');
   wordContainer.id = "wordContainer";
   wordContainer.className = "wordContainer";
   app.appendChild(wordContainer);
 
+  var spantag = document.createElement('span');
+  wordContainer.appendChild(spantag);
 
   var addButton = document.createElement('div');
   addButton.id = "addWord";
@@ -169,10 +212,10 @@ function AddSentence(e) {
   Sentence.appendChild(DeleteSentenceButton);
 
   var slideContainer = document.getElementById('slideContainer');
-  var index = [].indexOf.call(slideContainer.children, selectedContainer);
-  slideContainer.insertBefore(Sentence, slideContainer.children[index + 1]);
+  slideContainer.appendChild(Sentence);
+  // var index = [].indexOf.call(slideContainer.children, selectedContainer);
+  // slideContainer.insertBefore(Sentence, slideContainer.children[index+1]);
   ReIndexingContainter(slideContainer.children);
-
 }
 
 function DeleteSentence(e) {
@@ -182,10 +225,16 @@ function DeleteSentence(e) {
   ReIndexingContainter(slideContainer.children);
 }
 
+/**
+ * @lastUpdate 19-11-09 / 20:38 
+ * @lastAuthor 정현재
+ * @param {*} e 'event' object
+ * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
+ */
 function ReIndexingContainter(container) {
   for (var i = 0, item; item = container[i]; i++) {
     item.id = "sentenceContainer-" + (i + 1);
-    item.children[0].children[0].innerText = (i + 1) + " :";
+    item.children[0].children[0].children[0].innerText = (i + 1) + " :";
   }
 }
 
@@ -197,6 +246,7 @@ function ReIndexingContainter(container) {
  *          취소버튼으로 변환하게 함
  */
 function modifyButtonClicked(e) {
+  console.log(selectedWord + " mBClicked");
   var mdT = document.getElementById("modified-Text");
   var mdB = document.getElementById("word-Modify-Button")
   var mdDB = document.getElementById('word-Delete-confirmButton')
@@ -208,6 +258,7 @@ function modifyButtonClicked(e) {
     tg.innerText = '취소';
     mdDB.style.display = 'none';
   } else {
+    mdT.value = '';
     mdT.style.display = 'none';
     mdB.style.display = 'none';
     tg.className = 'btn btn-light';
@@ -224,6 +275,7 @@ function modifyButtonClicked(e) {
  */
 function modifyConfirmButtonClicked(e) {
   var mdT = document.getElementById('modified-Text');
+  console.log(selectedWord + " confirmed");
   if (mdT.value != '' || mdT.value != ' ') {
     selectedWord.innerText = mdT.value;
     mdT.value = '';

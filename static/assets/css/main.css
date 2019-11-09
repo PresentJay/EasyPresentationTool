@@ -2443,7 +2443,7 @@ input, select, textarea {
 		color: white;
 		background-color: #2E3842;
 	}
-
+	
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
