@@ -15,24 +15,11 @@ app = Flask(__name__,static_url_path='/static')
 def hello():
     return render_template("index.html")
     
-
 @app.route("/result",methods=['POST','GET'])
 def result():
     if request.method == 'POST':
         result = request.form
         return render_template("result.html",result=kkma.Process_KOR(result['str']))
-
-@app.route("/test")
-def textAnalysor():
-    return render_template("textanalyze.html")
-
-@app.route("/api")
-def api():
-    return render_template("test.html")
-
-@app.route("/api/json")
-def api_json():
-    return jsonify(name='apple')
 
 if __name__ == "__main__":
     #app.run(host=host_addr,port=port_num)
