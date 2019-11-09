@@ -111,16 +111,41 @@ div.circleBehind .word:hover:after
     transform: translateX(-50%) translateY(-50%) scale(1.3);
 }
 
+/*
+ * @lastUpdate 19-11-09 / 18:52
+ * @lastAuthor 박현채
+ * @param header
+ * @explain nav
+ */
 
-/* --------------------------------------------------- */
-
-.wordarea{
-    background-color: white !important;
-    opacity: 0.85;
-    width: 200px !important;
-    margin-bottom: 5px !important;
-}
-
-.wordarea::placeholder {
+#textarea-word::placeholder {
     color:black !important;
 }
+
+.resultLogo {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.resultLogoSpan {
+    font-weight: 500;
+    color: white;
+    font-size: 18px;
+}
+
+.spanCenter {
+    text-align-last: center;
+}
+
+.resultLogoA, .resultLogoA:link, .resultLogoA:visited {
+    text-decoration: none;
+    color: red;
+}
+
+.resultLogoA:hover {
+    text-decoration: none;
+    color: rgb(236, 122, 122);
+    font-weight: bold;
+}
+
+/* --------------------------------------------------- */
