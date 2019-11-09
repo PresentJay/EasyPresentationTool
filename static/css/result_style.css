@@ -148,4 +148,53 @@ div.circleBehind .word:hover:after
     font-weight: bold;
 }
 
-/* --------------------------------------------------- */
+/*
+ * @lastUpdate 19-11-09 / 19:22
+ * @lastAuthor 박현채
+ * @param footer -CreateButton
+ * @explain -CreateButton
+ */
+
+ .scriptEditBtnDiv {
+    text-align: center;
+ }
+
+ #scriptEditBtn {
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    padding:0 1.2em;
+    margin: 15px;
+    background:#2e3842;
+    color:#fff;
+    border:none;
+    position:relative;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+    border-radius: 5px;
+}
+#scriptEditBtn:hover {
+    color: black;
+    background-color: white;
+}
+
+#scriptEditBtn:before,#scriptEditBtn:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #2e3842;
+    transition:400ms ease all;
+  }
+  #scriptEditBtn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  #scriptEditBtn:hover:before,#scriptEditBtn:hover:after{
+    width:100%;
+    transition:500ms ease all;
+  }
