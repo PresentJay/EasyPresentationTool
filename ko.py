@@ -21,6 +21,7 @@ class Ko:
                                         strarr2.append(j[0]+'다')
                                 elif str(j[1])== 'NP' or str(j[1]) == 'NNG' or str(j[1]) == 'OL'or str(j[1]) == 'NR':
                                         strarr2.append(j[0])
-                        diction[iter] = strarr2
-                        iter += 1
+                        if  strarr2:
+                                diction[iter] = strarr2
+                                iter += 1
                 return diction

@@ -1,36 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<link href="{{ url_for('static', filename='css/result_style.css') }}"rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>EPT: Easy Presentation Tool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link href="{{ url_for('static', filename='css/result_style.css') }}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../static/assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="../static/assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
-	{% for key,value in result.items() %}
-	<div style="width:100%">
-		<select class="select" name="keyword">
-		   <option class="options" value="none">===select===</option>
-		</select>
-		<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">{{ key }} : 
-			<div id="wordContainer" class="wordContainer">
-			{% for object in value %}
-			<div class="word" id='word-{{ loop.index }}' draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">{{ object }}</div>
+	<div id="page-wrapper">
+		<header id="header" class="resultAlt">
+			<h1><a href="/">EPT</a></h1>
+			<nav id="nav">
+				<ul>
+					<li class="special">
+						<a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="/">Home</a></li>
+								<li><a href="#">Generic</a></li>
+								<li><a href="#">Elements</a></li>
+								<li><a href="#">Sign Up</a></li>
+								<li><a href="#">Log In</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<div id="slideContainer">
+			{% for key,value in result.items() %}
+			<!-- <div class="container topBotomBordersIn"> -->
+			<div id="sentenceContainer-{{ loop.index }}" class="container circleBehind"
+				onmouseover="ContainerMouseOver(event)" onmouseout="ContainerMouseLeave(event)">
+				<!-- <select class="select" name="keyword">
+			<option class="options" value="none">===select===</option>
+			</select> -->
+				<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">
+					<span class="keyNumber">{{ key }} :</span>
+					<div id="wordContainer" class="wordContainer">
+						{% for object in value %}
+						<div class="word" id='word-{{ loop.index }}' draggable="true" ondragstart="drag(event)"
+							ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clickWord(event)">{{ object }}
+						</div>
+						{% endfor %}
+					</div>
+					<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
+				</div>
+				<div id="SentenceAddButton" , class="btn btn-success" style="display:none" onclick="AddSentence(event)">
+					문장 추가</div>
+				<div id="SentenceDeleteButton" , class="btn btn-danger" style="display:none"
+					onclick="DeleteSentence(event)">문장 삭제</div>
+			</div>
 			{% endfor %}
-			</div>
-			<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
 		</div>
-	{% endfor %}
-	<div style="display: block; clear:both;">
-	</div>
-	<div id="contextMenu" class="container" role="menu">
-		<div class="input_group">
-			<div class="input-group flex-nowrap" id="contextMenu-input"><input class="" id='textarea-word' placeholder="객체명" aria-label="객체명"aria-describedby="addon-wrapping" type='text'></input></div>
-			<div><div class='btn btn-primary' onclick="ContextButtonClicked(event)">추가하기</div><div class='btn btn-secondary' onclick="ContextCancelButtonClicked(event)">취소</div>
+		<div style="display: block; clear:both;">
+		</div>
+		<div class="contextMenu" id="contextMenu" role="menu">
+			<div class="input_group">
+				<div class="input-group flex-nowrap" id="contextMenu-input">
+					<input type="text" class="wordarea" id='textarea-word' placeholder="추가할 말" required />
+				</div>
+				<div>
+					<div class='btn btn-primary' type="submit" onclick="ContextButtonClicked(event)">추가하기</div>
+					<div class='btn btn-secondary' onclick="ContextCancelButtonClicked(event)">취소</div>
+				</div>
 			</div>
 		</div>
-	<script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<div class="contextMenu" id="selection" role="menu" style="display: none;">
+			<input type="text" class="wordarea" id="modified-Text" placeholder="수정할 말" required
+				style="display: none;" />
+			<div>
+				<div id="word-Modify-Button" class='btn btn-success' onclick="modifyConfirmButtonClicked(event)"
+					style="display: none;">확인</div>
+				<div id="word-Modify-startButton" class='btn btn-light' onclick="modifyButtonClicked(event)">수정</div>
+				<div id="word-Delete-confirmButton" class="btn btn-danger" onclick="WordDeleteButtonClicked(event)">삭제
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='script/result_script.js') }}"></script>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+		</script>
+
+		<script src="https://cdnjs.cloudflarse.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+		</script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+		</script>
+		<script src="static/assets/js/jquery.min.js"></script>
+		<script src="{{ url_for('static', filename='script/jq_script.js') }}"></script>
+		<script src="static/assets/js/jquery.scrollex.min.js"></script>
+		<script src="static/assets/js/jquery.scrolly.min.js"></script>
+		<script src="static/assets/js/browser.min.js"></script>
+		<script src="static/assets/js/breakpoints.min.js"></script>
+		<script src="static/assets/js/util.js"></script>
+		<script src="static/assets/js/main.js"></script>
 </body>
+</div>
+
 </html>

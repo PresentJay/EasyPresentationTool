@@ -13,7 +13,7 @@ app = Flask(__name__,static_url_path='/static')
 
 @app.route("/")
 def hello():
-    return render_template("input.html")
+    return render_template("index.html")
     
 
 @app.route("/result",methods=['POST','GET'])
@@ -35,4 +35,5 @@ def api_json():
     return jsonify(name='apple')
 
 if __name__ == "__main__":
+    #app.run(host=host_addr,port=port_num)
     app.run(host=host_addr,port=port_num,debug=True)

@@ -1,26 +1,126 @@
+.container{
+    max-width: 100% !important;
+    width:90% !important;
+}
+
 .word{
-    font-size:20px;
+    font-size:24px;
     font-weight: bold;
     display:inline-block;
-    background : white;
-    border: 1px solid red;
+    /* background :rgba(255,255,255,0.7); */
     padding-top:5px;
     padding-bottom: 5px;
     padding-left:10px;
     padding-right:10px;
     margin-right:10px;
 }
+
+#word-Modify-Button{
+    margin-right: 5px;
+}
+
 .object{
-    background:coral;
-    border : 1px solid red;
-    margin-bottom: 10px;
+    background:#1b9b90;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 4px;
+    width: 100%;
+    color: white;
+    font-size: 24px;
+    border-radius: 15px;
 }
 .wordContainer{
     display: inline-block;
+    border: black;
+    padding: 10px;
 }
 #contextMenu, #addWord{
     display:none;
 }
 #contextMenu-input{
     padding-bottom: 10px;
+}
+
+.contextMenu{
+    background-color: grey;
+    border: 3px black;
+    text-align: center;
+    padding : 15px;
+    width: auto;
+    position: absolute;
+}
+
+div.container
+{
+    font-family: Raleway;
+    margin: 3 auto;
+	text-align: left;
+}
+
+div.container .circleBehind{
+    max-width: 1920px;
+    width: 100%;
+    padding : 0px;
+    margin : 0px;
+}
+
+div.container .word
+{
+    color: #FFF;
+    text-decoration: none;
+    font: 24px Raleway;
+    margin: 0px 10px;
+    padding: 4px 4px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+}
+
+div.circleBehind .word:before, div.circleBehind .word:after
+{
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 4px solid #0277bd;
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+    border-radius: 50%;
+    background: transparent;
+    content: "";
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: -1;
+}
+
+div.circleBehind .word:after
+{
+    border-width: 2px;
+    transition: all 0.4s;
+}
+
+div.circleBehind .word:hover:before
+{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+div.circleBehind .word:hover:after
+{
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%) scale(1.3);
+}
+
+
+/* --------------------------------------------------- */
+
+.wordarea{
+    background-color: white !important;
+    opacity: 0.85;
+    width: 200px !important;
+    margin-bottom: 5px !important;
+}
+
+.wordarea::placeholder {
+    color:black !important;
 }
