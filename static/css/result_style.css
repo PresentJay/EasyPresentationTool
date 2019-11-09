@@ -15,14 +15,14 @@
     margin-right:10px;
 }
 
-#word-Modify-Button{
+.btn {
     margin-right: 5px;
 }
 
 .object{
     background: #042f5a;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 4px;
     width: 100%;
     color: white;
@@ -75,6 +75,10 @@ div.container .circleBehind{
     width: 100%;
     padding : 0px;
     margin : 0px;
+}
+
+.circleBehind{
+    padding-bottom: 30px;
 }
 
 div.container .word
@@ -139,12 +143,7 @@ div.circleBehind .word:hover:after
     color:black !important;
 }
  
-/*
- * @lastUpdate 19-11-09 / 18:52
- * @lastAuthor 박현채
- * @param header
- * @explain nav
- */
+/*result.html header menu*/
 
 .resultLogo {
     font-size: 15px;
@@ -164,6 +163,7 @@ div.circleBehind .word:hover:after
 .resultLogoA, .resultLogoA:link, .resultLogoA:visited {
     text-decoration: none;
     color: red;
+    display: contents;
 }
 
 .resultLogoA:hover {
@@ -172,12 +172,7 @@ div.circleBehind .word:hover:after
     font-weight: bold;
 }
 
-/*
- * @lastUpdate 19-11-09 / 19:22
- * @lastAuthor 박현채
- * @param footer -CreateButton
- * @explain -CreateButton
- */
+/*result.html CreateBtn*/
 
  .scriptEditBtnDiv {
     text-align: center;
@@ -221,4 +216,55 @@ div.circleBehind .word:hover:after
   #scriptEditBtn:hover:before,#scriptEditBtn:hover:after{
     width:100%;
     transition:500ms ease all;
+  }
+
+  /*result.html sequenceMenu*/
+.sequenceMenu {
+    background-color: rgb(230, 230, 230, 0.6);
+    margin-top: -1px;
+    margin-bottom: 15px;
+    height: 100px;   
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  .sequenceMenuUl {
+    color: black;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 2;
+  }
+
+  .sequenceMenuUl li {
+    padding: 0 40px;
+    border: 0;
+    display: inline;
+    font-weight: bold;
+  }
+
+  .sequenceMenuUl li img {
+    width: 55px;
+    height: auto;
+  }
+
+  .sequenceMenuUl li a,.sequenceMenuUl li a:visited,.sequenceMenuUl li a:link {
+    font-weight: bold;
+    text-decoration: none !important;
+    color:rgb(172, 172, 172) !important;
+    display: contents;
+  }
+
+  .sequenceMenuUl li a:hover, .sequenceMenuUl li a:active {
+      color: black !important;
+      font-size: 22px;
+      cursor: pointer;
+  }
+
+  .keyNumber {
+      font-weight: bold;
+      color: #65B1FD;
   }

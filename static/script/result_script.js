@@ -41,29 +41,26 @@ function addWord(e) {
     var tgRect = e.target.getBoundingClientRect();
     sel.style.left = (tgRect.left + pageXOffset) + 'px';
     sel.style.top = (tgRect.bottom + pageYOffset) + 'px';
-
   }
 }
 
 /**
- * @lastUpdate 19-11-08 / 20:45
+ * @lastUpdate 19-11-10 / 01:02
  * @lastAuthor 정현재
  * @param {*} e 'event' object
  * @explain Word 클릭 시 선택한 Element 하단으로 수정/삭제 컨텍스트메뉴(selection) 노출/제거
+ *          스크롤된 페이지 계산 적용
  */
 function clickWord(e) {
   clearContextMenu();
   var sel = document.getElementById('selection');
   selectedWord = e.target;
-  console.log(selectedWord + " modified.");
   if (sel.style.display == 'block') sel.style.display = 'none';
   else {
     sel.style.display = 'block';
     var tgRect = selectedWord.getBoundingClientRect();
     sel.style.left = (tgRect.left + pageXOffset) + 'px';
     sel.style.top = (tgRect.bottom + pageYOffset) + 'px';
-
-    console.log(tgRect.left + " , " + tgRect.bottom);
   }
 }
 
@@ -185,6 +182,7 @@ function AddSentence(e) {
   app.appendChild(wordContainer);
 
   var spantag = document.createElement('span');
+  spantag.className = "keyNumber";
   wordContainer.appendChild(spantag);
 
   var addButton = document.createElement('div');
@@ -212,9 +210,8 @@ function AddSentence(e) {
   Sentence.appendChild(DeleteSentenceButton);
 
   var slideContainer = document.getElementById('slideContainer');
-  slideContainer.appendChild(Sentence);
-  // var index = [].indexOf.call(slideContainer.children, selectedContainer);
-  // slideContainer.insertBefore(Sentence, slideContainer.children[index+1]);
+  var index = [].indexOf.call(slideContainer.children, selectedContainer);
+  slideContainer.insertBefore(Sentence, slideContainer.children[index+1]);
   ReIndexingContainter(slideContainer.children);
 }
 
@@ -226,7 +223,7 @@ function DeleteSentence(e) {
 }
 
 /**
- * @lastUpdate 19-11-09 / 20:38 
+ * @lastUpdate 19-11-10 / 04:46 
  * @lastAuthor 정현재
  * @param {*} e 'event' object
  * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
@@ -234,7 +231,7 @@ function DeleteSentence(e) {
 function ReIndexingContainter(container) {
   for (var i = 0, item; item = container[i]; i++) {
     item.id = "sentenceContainer-" + (i + 1);
-    item.children[0].children[0].children[0].innerText = (i + 1) + " :";
+    item.children[0].children[0].children[0].innerText = " Slide " + (i + 1) + " ";
   }
 }
 
@@ -276,7 +273,7 @@ function modifyButtonClicked(e) {
 function modifyConfirmButtonClicked(e) {
   var mdT = document.getElementById('modified-Text');
   console.log(selectedWord + " confirmed");
-  if (mdT.value != '' || mdT.value != ' ') {
+  if (mdT.value != '' && mdT.value != ' ') {
     selectedWord.innerText = mdT.value;
     mdT.value = '';
     clearContextMenu();

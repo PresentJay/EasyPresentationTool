@@ -37,6 +37,14 @@
 				</ul>
 			</nav>
 		</header>
+		<div class="sequenceMenu">
+			<ul class="sequenceMenuUl">
+				<li><a onclick=window.history.back()><img src="../static/images/scriptAdd.png"> 대본입력기</a></li>
+				<li style="font-size: 22px"><img src="../static/images/scriptEdit.png"> 대본편집기</li>
+				<li style="color:rgb(172, 172, 172)"><img src="../static/images/slideEdit.png"> 슬라이드편집기</li>
+				<li style="color:rgb(172, 172, 172)"><img src="../static/images/createPpt.png"> 발표자료생성</li>
+			</ul>
+		</div>
 
 			<div id="slideContainer">
 				{% for key,value in result.items() %}
@@ -48,7 +56,7 @@
 			</select> -->
 					<div id="app" class="object" onmouseover="MouseOver(event)" onmouseout="MouseLeave(event)">
 						<div id="wordContainer" class="wordContainer">
-							<span class="keyNumber">{{ key }} :</span>
+							<span class="keyNumber">Slide {{ key }}</span>
 							{% for object in value %}
 							<div class="word" id='word-{{ loop.index }}' draggable="true" ondragstart="drag(event)"
 								ondrop="drop(event)" ondragover="allowDrop(event)" onclick="clickWord(event)">
@@ -56,12 +64,10 @@
 							</div>
 							{% endfor %}
 						</div>
-						<div class="btn btn-primary" id="addWord" onmousedown="addWord(event)">+</div>
+						<div class="btn btn-primary" id="addWord" style="display: none !important;"  onmousedown="addWord(event)">+</div>
 					</div>
 					<div id="SentenceAddButton" , class="btn btn-success" style="display:none"
-						onclick="AddSentence(event)">
-						문장 추가</div>
-					<div id="SentenceDeleteButton" , class="btn btn-danger" style="display:none"
+						onclick="AddSentence(event)">문장 추가</div><div id="SentenceDeleteButton" class="btn btn-danger" style="display:none"
 						onclick="DeleteSentence(event)">문장 삭제</div>
 				</div>
 				{% endfor %}
