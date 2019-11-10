@@ -17,7 +17,7 @@ var selectedContainer;
  * @lastUpdate 19-11-10 / 00:11
  * @lastAuthor 정현재
  * @param {*} e 'event' object
- * @explain 
+ * @explain
  */
 function MouseOver(e) {
   selectedTarget = e.currentTarget.children[1];
@@ -28,7 +28,7 @@ function MouseOver(e) {
  * @lastUpdate 19-11-10 / 00:11
  * @lastAuthor 정현재
  * @param {*} e 'event' object
- * @explain 
+ * @explain
  */
 function MouseLeave(e) {
     e.currentTarget.children[1].style.display = 'none';
@@ -75,7 +75,7 @@ function clickWord(e) {
 }
 
 /**
- * @lastUpdate 19-11-09 / 11:27 
+ * @lastUpdate 19-11-09 / 11:27
  * @lastAuthor 정현재
  * @param {*} e 'event' object
  * @explain word 추가 시, 빈 공간이 그대로 추가되는 현상에 관련하여 기초적인 유효성검사만 실행
@@ -138,7 +138,7 @@ function ReIndexing(container) {
 }
 
 /**
- * @lastUpdate 19-11-09 / 20:22 
+ * @lastUpdate 19-11-09 / 20:22
  * @lastAuthor 정현재
  * @param {*} e 'event' object
  * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
@@ -151,10 +151,10 @@ function WordDeleteButtonClicked(e) {
 }
 
 /**
- * @lastUpdate 
+ * @lastUpdate
  * @lastAuthor 임순길
  * @param {*} e 'event' object
- * @explain 
+ * @explain
  */
 function ContainerMouseOver(e) {
   selectedContainer = e.currentTarget;
@@ -238,7 +238,7 @@ function DeleteSentence(e) {
 }
 
 /**
- * @lastUpdate 19-11-10 / 04:46 
+ * @lastUpdate 19-11-10 / 04:46
  * @lastAuthor 정현재
  * @param {*} e 'event' object
  * @explain {key} span을 wordContainer div로 재편입하면서, 전체적인 children의 순서 조정
@@ -306,4 +306,29 @@ function clearContextMenu() {
   var ctx_menu = document.getElementById('contextMenu');
   if (ctx_selection.style.display != 'none') ctx_selection.style.display = 'none';
   if (ctx_menu.style.display != 'none') ctx_menu.style.display = 'none';
+}
+
+/**
+ * @lastUpdate 19-11-10 / 12:00
+ * @lastAuthor 조경원
+ * @explain 트리구조로 나뉘어져 있는 키, 값들을 이중 배열로 다시 정리
+ */
+function makeArray() {
+ var keyArray = [];
+  var valueArray = [];
+  var valueArray1 = [];
+  var key = document.getElementById('slideContainer').children;
+  var keylength = key.length;
+  for(var i = 0; i < keylength; i++)
+  {
+    valueArray = [];
+    for(var j = 1; j <= key[i].children[0].children[0].children.length-1; j++ )
+    {
+
+       valueArray.push(key[i].children[0].children[0].children[j].innerText);
+     }
+     valueArray1 = valueArray;
+     keyArray.push(valueArray1);
+  }
+  console.log(keyArray);
 }
