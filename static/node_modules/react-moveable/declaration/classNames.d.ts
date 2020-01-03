@@ -1,0 +1,4 @@
+export declare const AREA: string;
+export declare const AREA_PIECES: string;
+export declare const AREA_PIECE: string;
+export declare const AVOID: string;

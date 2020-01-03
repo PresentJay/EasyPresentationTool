@@ -1,0 +1,14 @@
+.left {
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    background: coral;
+}
+.right{
+    margin-left: 25%;
+    padding: 1px 16px;
+    background: chocolate;
+}

@@ -1,0 +1,37 @@
+.draggable {
+    cursor: move !important;
+    display: inline-block !important;
+    font-size: 40px !important;
+    font-weight: bold !important;
+}
+
+.text {
+    display: inline-block;
+    cursor: move;
+}
+
+.text:focus {
+    cursor: auto;
+}
+
+.text-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+.wrap {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar-fixed-left {
+    width: 200px;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    background-color: lightgrey;
+  }
