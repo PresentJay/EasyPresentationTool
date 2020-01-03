@@ -20,7 +20,7 @@
 }
 
 .object{
-    background: #042f5a;
+    background: #46464d;
     padding: 20px;
     margin-top: 10px;
     margin-bottom: 4px;
@@ -100,7 +100,7 @@ div.circleBehind .word:before, div.circleBehind .word:after
     left: 50%;
     width: 50px;
     height: 50px;
-    border: 4px solid #0277bd;
+    border: 4px solid #7c7c7c;
     transform: translateX(-50%) translateY(-50%) scale(0.8);
     border-radius: 50%;
     background: transparent;
@@ -266,5 +266,5 @@ div.circleBehind .word:hover:after
 
   .keyNumber {
       font-weight: bold;
-      color: #65B1FD;
+      color: rgb(197, 197, 197);
   }

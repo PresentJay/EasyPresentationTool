@@ -16,10 +16,10 @@
 	<div id="page-wrapper">
 		<header id="header" class="resultAlt">
 			<h1 class="resultLogo"><a style="text-decoration: none; color:inherit" href="/">EPT</a></h1>
-			<div class="spanCenter">
+			<!-- <div class="spanCenter">
 				<span class="resultLogoSpan">대본편집기에 대한 사용방법을 숙지하고 편집하세요!<a class="resultLogoA" href='#'> [사용법
 						바로가기]</a></span>
-			</div>
+			</div> -->
 			<nav id="nav">
 				<ul>
 					<li class="special">
@@ -99,17 +99,10 @@
 				</div>
 			</div>
 
-			<!--CreateButton
-
-		@lastUpdate 19-11-09 / 19:20
-		@lastAuthor 박현채
-		@param footer -CreateButton
-		@explain -CreateButton-->
-
 			<div class="scriptEditBtnDiv">
-				<form action="#" method="POST">
-					<button id="scriptEditBtn" type="submit">다음단계로 가기</button>
+				<form id="scriptEditForm" action="/edit" method="POST">
 				</form>
+				<button id="scriptEditBtn"onclick="makeArray()">Slide Edit</button>
 			</div>
 		</div>
 

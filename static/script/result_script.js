@@ -309,11 +309,12 @@ function clearContextMenu() {
 }
 
 /**
- * @lastUpdate 19-11-10 / 12:00
- * @lastAuthor 조경원
- * @explain 트리구조로 나뉘어져 있는 키, 값들을 이중 배열로 다시 정리
+ * @lastUpdate 19-12-02 / 21:46
+ * @lastAuthor 임순길
+ * @explain 트리구조로 나뉘어져 있는 키, 값들을 이중 배열로 다시 정리 -> JSON으로 변환해 서버로 전달.
  */
 function makeArray() {
+  var form = document.getElementById('scriptEditForm');
  var keyArray = [];
   var valueArray = [];
   var valueArray1 = [];
@@ -324,11 +325,16 @@ function makeArray() {
     valueArray = [];
     for(var j = 1; j <= key[i].children[0].children[0].children.length-1; j++ )
     {
-
        valueArray.push(key[i].children[0].children[0].children[j].innerText);
      }
      valueArray1 = valueArray;
      keyArray.push(valueArray1);
   }
-  console.log(keyArray);
+  var json = JSON.stringify(keyArray);
+  var el = document.createElement('input');
+  el.type = "hidden";
+  el.value = json;
+  el.name = "Sentence_Array";
+  form.appendChild(el);
+  form.submit();
 }
